@@ -4,24 +4,26 @@ If there is no new line, store in buffer and read again.
 If there is a new line, store overflow in buffer.
 */
 
-// void read_data(int fd)
-// {
-// 	char	*readstr;
-// 	int		bread;
-// 	char	BUFF[BUFFER_SIZE + 1];
+void read_data(int fd)
+{
+	char	*readstr;
+	int		b_read;
+	char	BUFF[BUFFER_SIZE + 1];
 
-// 	bread = 1;
-// 	readstr = NULL;
-// 	while (bread > 0)
-// 	{
-// 		bread = read(fd, BUFF, BUFFER_SIZE);
-// 		BUFF[bread] = '\0';
-// 		readstr = ft_strjoin(readstr, BUFF); // if s1 is null, return strdup s2
-// 	}
-// 	// Check remainder or current readstr...
-// 	return (NULL);
-// }
-->
+	b_read = 1;
+	readstr = NULL;
+	while (b_read > 0)
+	{
+		b_read = read(fd, BUFF, BUFFER_SIZE);
+		BUFF[b_read] = '\0';
+		readstr = ft_strjoin(readstr, BUFF); // if s1 is null, return strdup s2
+	}
+	remainder = ft_splitup() // use substring to split up 
+	// Check current string for remainder
+	// Check remainder or current readstr...
+	return (NULL);
+}
+
 char	*get_next_line(int fd)
 {
 	char	*read_str;
