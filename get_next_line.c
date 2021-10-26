@@ -4,7 +4,7 @@ If there is no new line, store in buffer and read again.
 If there is a new line, store overflow in buffer.
 */
 
-void read_data(int fd)
+void	read_data(int fd)
 {
 	char	*readstr;
 	int		b_read;
@@ -16,10 +16,11 @@ void read_data(int fd)
 	{
 		b_read = read(fd, BUFF, BUFFER_SIZE);
 		BUFF[b_read] = '\0';
-		readstr = ft_strjoin(readstr, BUFF); // if s1 is null, return strdup s2
+		readstr = ft_strjoin(readstr, BUFF); 
+		// if s1 is null, return strdup s2
+		// use strchr to check if there is a newline in BUFF
 	}
-	remainder = ft_splitup() // use substring to split up 
-	// Check current string for remainder
+	// use substring to get rid of everything after newline
 	// Check remainder or current readstr...
 	return (NULL);
 }
