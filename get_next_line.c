@@ -47,12 +47,12 @@ static char	*read_data(int fd)
 		if (ft_strchr(BUFF, '\n'))
 			break ;
 	}
-	out = disect_str(readstr);
 	if (remainder)
 	{
 		out = ft_strjoin(out, remainder);
 		free(remainder);
 	}
+	out = ft_strjoin(out, disect_str(readstr));
 	remainder = remainder_str(readstr);
 	free(readstr);
 	return (out);

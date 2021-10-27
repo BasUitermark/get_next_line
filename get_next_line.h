@@ -3,7 +3,7 @@
 # include <unistd.h>
 # include <stdlib.h>
 # include <stdio.h>
-# define BUFFER_SIZE 8
+// # define BUFFER_SIZE
 
 // static struct s_data
 // {
