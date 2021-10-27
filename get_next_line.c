@@ -1,12 +1,25 @@
 #include "get_next_line.h"
-/*
-If there is no new line, store in buffer and read again.
-If there is a new line, store overflow in buffer.
-*/
 
-void	read_data(int fd)
+void	remainder(char *str)
+{
+}
+
+char	*desect_str(char *str)
+{
+	char	*out;
+	size_t	i;
+
+	i = 0;
+	while (str[i] != '\n')
+		i++;
+	out = ft_substr(str, 0, i + 1);
+	return (out);
+}
+
+char	*read_data(int fd)
 {
 	char	*readstr;
+	char	*out;
 	int		b_read;
 	char	BUFF[BUFFER_SIZE + 1];
 
@@ -16,50 +29,19 @@ void	read_data(int fd)
 	{
 		b_read = read(fd, BUFF, BUFFER_SIZE);
 		BUFF[b_read] = '\0';
-		readstr = ft_strjoin(readstr, BUFF); 
-		// if s1 is null, return strdup s2
-		// use strchr to check if there is a newline in BUFF
+		readstr = ft_strjoin(readstr, BUFF);
+		if (ft_strchr(BUFF, '\n'))
+			break ;
 	}
-	// use substring to get rid of everything after newline
+	out = desect_str(readstr);
+	return (out);
 	// Check remainder or current readstr...
-	return (NULL);
 }
 
 char	*get_next_line(int fd)
 {
-	char	*read_str;
-	char	*temp;
-	size_t	read_size;
-	size_t	i;
-	size_t	j;
+	char	*out;
 
-	i = 0;
-	j = 0;
-	read_str = (char *)malloc((BUFFER_SIZE) * sizeof(char));
-	if (!read_str)
-		return (NULL);
-	read_size = read(fd, read_str, BUFFER_SIZE);
-	temp = (char *)malloc((read_size + 2) * sizeof(char));
-	if (!temp)
-		return (NULL);
-	while (read_str[i])
-	{
-		temp[j] = read_str[i];
-		i++;
-		j++;
-		if (read_str[i] == '\n')
-		{
-			temp[j + 1] = '\0';
-			return (temp);
-		}
-	}
-	return (NULL);
+	out = read_data(fd);
+	return (out);
 }
-/*
-1.	Read fd for BUFFER_SIZE amount of charachters.
-2.	Count characters in read_str untill newline.
-	*	If read_size is equal in length to read_str
-		append buffer and return
-	*	If 
-
-*/
