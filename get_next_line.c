@@ -1,10 +1,23 @@
 #include "get_next_line.h"
 
-void	remainder(char *str)
+static char	*remainder_str(char *str)
 {
+	char	*remainder;
+	size_t	len;
+	size_t	i;
+
+	i = 0;
+	len = ft_strlen(str);
+	while (len > 0 && str[len] != '\n')
+	{
+		len--;
+		i++;
+	}
+	remainder = ft_substr(str, len, i);
+	return (remainder);
 }
 
-char	*desect_str(char *str)
+static char	*disect_str(char *str)
 {
 	char	*out;
 	size_t	i;
@@ -16,12 +29,13 @@ char	*desect_str(char *str)
 	return (out);
 }
 
-char	*read_data(int fd)
+static char	*read_data(int fd)
 {
-	char	*readstr;
-	char	*out;
-	int		b_read;
-	char	BUFF[BUFFER_SIZE + 1];
+	char		*readstr;
+	char		*out;
+	int			b_read;
+	char		BUFF[BUFFER_SIZE + 1];
+	char static	*remainder;
 
 	b_read = 1;
 	readstr = NULL;
@@ -33,9 +47,15 @@ char	*read_data(int fd)
 		if (ft_strchr(BUFF, '\n'))
 			break ;
 	}
-	out = desect_str(readstr);
+	out = disect_str(readstr);
+	if (remainder)
+	{
+		out = ft_strjoin(out, remainder);
+		free(remainder);
+	}
+	remainder = remainder_str(readstr);
+	free(readstr);
 	return (out);
-	// Check remainder or current readstr...
 }
 
 char	*get_next_line(int fd)

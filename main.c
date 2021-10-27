@@ -5,10 +5,17 @@
 int	main(int argc, char const *argv[])
 {
 	int		fd;
+	size_t	i;
 	char	*line;
 
+	i = 0;
 	fd = open("./test/test1.txt", O_RDONLY);
-	printf("%s\n", get_next_line(fd));
+	while (i <= 2)
+	{
+		line = get_next_line(fd);
+		printf("%s\n", line);
+		free(line);
+	}
 	close (fd);
 	return 0;
 }
