@@ -31,11 +31,11 @@ static char	*disect_str(char *str)
 
 static char	*read_data(int fd)
 {
-	char		*readstr;
-	char		*out;
-	int			b_read;
-	char		BUFF[BUFFER_SIZE + 1];
-	static char	*remainder;
+	char			*readstr;
+	char			*out;
+	int				b_read;
+	char			BUFF[BUFFER_SIZE + 1];
+	static char		*remainder;
 
 	b_read = 1;
 	readstr = NULL;
@@ -47,12 +47,13 @@ static char	*read_data(int fd)
 		if (ft_strchr(BUFF, '\n'))
 			break ;
 	}
+	// out = disect_str(readstr); works but needs to be after remainder check
 	if (remainder)
 	{
 		out = ft_strjoin(out, remainder);
 		free(remainder);
 	}
-	out = ft_strjoin(out, disect_str(readstr));
+	// out = ft_strjoin(out, disect_str(readstr)); doesnt work for some reason but is what I need
 	remainder = remainder_str(readstr);
 	free(readstr);
 	return (out);

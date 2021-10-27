@@ -2,7 +2,7 @@
 # define GET_NEXT_LINE_H
 # include <unistd.h>
 # include <stdlib.h>
-# define BUFFER_SIZE
+# define BUFFER_SIZE 4
 
 // static struct s_data
 // {
