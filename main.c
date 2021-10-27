@@ -27,6 +27,7 @@ int	main(int argc, char const *argv[])
 	i = 0;
 	fd = open("./test/test1.txt", O_RDONLY);
 	printf("%s\n", get_next_line(fd));
+	printf("%s\n", get_next_line(fd));
 	close (fd);
 	return 0;
 }
