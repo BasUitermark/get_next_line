@@ -35,7 +35,7 @@ static char	*read_data(int fd)
 	char		*out;
 	int			b_read;
 	char		BUFF[BUFFER_SIZE + 1];
-	char static	*remainder;
+	static char	*remainder;
 
 	b_read = 1;
 	readstr = NULL;
