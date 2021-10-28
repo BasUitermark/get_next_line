@@ -5,11 +5,6 @@
 # include <stdio.h>
 # define BUFFER_SIZE 4
 
-// static struct s_data
-// {
-// 	char	*remainder;
-// }	data;
-
 //== get_next_line functions ==/
 
 char		*get_next_line(int fd);
