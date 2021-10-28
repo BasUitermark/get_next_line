@@ -13,7 +13,7 @@ static char	*remainder_str(char *str)
 		len--;
 		i++;
 	}
-	remainder = ft_substr(str, len, i);
+	remainder = ft_substr(str, len + 1, i - 1);
 	return (remainder);
 }
 
@@ -25,7 +25,7 @@ static char	*disect_str(char *str)
 	i = 0;
 	while (str[i] != '\n')
 		i++;
-	out = ft_substr(str, 0, i + 1);
+	out = ft_substr(str, 0, i);
 	return (out);
 }
 
@@ -40,7 +40,6 @@ static char	*read_data(int fd)
 
 	b_read = 1;
 	readstr = NULL;
-	remainder = NULL;
 	while (b_read > 0)
 	{
 		b_read = read(fd, BUFF, BUFFER_SIZE);
@@ -61,6 +60,14 @@ static char	*read_data(int fd)
 	free(tmp);
 	return (out);
 }
+
+/**
+ * TODO
+ * missing letters on multiple single character lines
+ * segfault on one single character line
+ * keeps printing even when everything is read
+ * make main to test betters
+ */
 
 char	*get_next_line(int fd)
 {
