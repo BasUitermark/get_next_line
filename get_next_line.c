@@ -1,6 +1,6 @@
 #include "get_next_line.h"
 
-static char	*remainder_str(char *str)
+static char	*return_back(char *str)
 {
 	char	*remainder;
 	size_t	len;
@@ -17,7 +17,7 @@ static char	*remainder_str(char *str)
 	return (remainder);
 }
 
-static char	*disect_str(char *str)
+static char	*return_front(char *str)
 {
 	char	*out;
 	size_t	i;
