@@ -52,6 +52,7 @@ char	*ft_strdup(const char *str)
 		out[i] = str[i];
 		i++;
 	}
+	out[i] = '\0';
 	return (out);
 }
 

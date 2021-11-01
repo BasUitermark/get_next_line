@@ -43,19 +43,24 @@ static char	*read_data(int fd)
 	while (b_read > 0)
 	{
 		b_read = read(fd, BUFF, BUFFER_SIZE);
+		if (b_read == 0)
+			break ;
 		BUFF[b_read] = '\0';
 		readstr = ft_strjoin(readstr, BUFF);
 		if (ft_strchr(BUFF, '\n'))
 			break ;
 	}
+	// printf("%s\n", readstr);
 	if (remainder)
 	{
 		out = ft_strdup(remainder);
 		free(remainder);
 	}
-	tmp = disect_str(readstr);
+	tmp = return_front(readstr);
 	out = ft_strjoin(out, tmp);
-	remainder = remainder_str(readstr);
+	// printf("%s\n", out);
+	// if ((ft_strlen(readstr)) < b_read)
+	remainder = return_back(readstr);
 	free(readstr);
 	free(tmp);
 	return (out);

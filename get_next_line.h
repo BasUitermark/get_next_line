@@ -9,24 +9,6 @@
 
 char		*get_next_line(int fd);
 
-/**
- * Reads BUFFER_SIZE amount of bytes, joins them onto readstr and 
- * desects them between out and remainder.
- * @param fd The filedescriptor to read from.
- * @param readstr The total string read with the new line and extra bytes.
- * @param out The string ending with a newline or EOF.
- * @param b_read Bytes read from read.
- * @param BUFF The array where BUFFER_SIZE amount of bytes will be read.
- * @return Returns out
-*/
-static char	*read_data(int fd);
-
-/**
- * Outputs a new string up to and including the newline.
- * @param 
-*/
-static char	*disect_str(char *str);
-
 //== util functions ==//
 
 /**
