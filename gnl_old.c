@@ -14,6 +14,7 @@ static char	*return_back(char *str)
 	while (str[start + i])
 		i++;
 	remainder = ft_substr(str, start, i - 1);
+	// printf("return_back: %s\n", remainder);
 	return (remainder);
 }
 
@@ -23,9 +24,10 @@ static char	*return_front(char *str)
 	size_t	i;
 
 	i = 0;
-	while (str[i] != '\n')
+	while (str[i - 1] != '\n' && str[i])
 		i++;
 	out = ft_substr(str, 0, i);
+	// printf("return_front: %s\n", out);
 	return (out);
 }
 
@@ -39,24 +41,19 @@ static char	*read_data(int fd)
 
 	b_read = 1;
 	readstr = NULL;
-	/*
-	TODO
-	recheck if there is a newline in remainder
-	*/
-	if (remainder)
-	{
-		readstr = ft_strdup(remainder);
-		free(remainder);
-	}
 	while (b_read > 0 && !(ft_strchr(BUFF, '\n')))
 	{
+		if (remainder)
+		{
+			readstr = ft_strdup(remainder);
+			free(remainder);
+		}
 		b_read = read(fd, BUFF, BUFFER_SIZE);
-		if (b_read == 0)
-			break ;
 		BUFF[b_read] = '\0';
 		readstr = ft_strjoin(readstr, BUFF);
 	}
-	out = ft_strjoin(out, return_front(readstr));
+	// printf("readstr: %s\n", readstr);
+	out = return_front(readstr);
 	remainder = return_back(readstr);
 	free(readstr);
 	return (out);
