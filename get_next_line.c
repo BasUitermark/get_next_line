@@ -7,13 +7,12 @@ static char	*return_back(char *str)
 	size_t	i;
 
 	i = 0;
-	if (!str)
-		return (NULL);
+	start = 0;
 	while (str[start - 1] != '\n' && str[start])
 		start++;
 	while (str[start + i])
 		i++;
-	remainder = ft_substr(str, start, i - 1);
+	remainder = ft_substr(str, start, i);
 	return (remainder);
 }
 
@@ -23,13 +22,18 @@ static char	*return_front(char *str)
 	size_t	i;
 
 	i = 0;
-	while (str[i] != '\n')
+	while (str[i - 1] != '\n' && str[i])
 		i++;
 	out = ft_substr(str, 0, i);
 	return (out);
 }
 
-static char	*read_data(int fd)
+// static char	*read_data(int fd)
+// {
+
+// }
+
+char	*get_next_line(int fd)
 {
 	char		*readstr;
 	char		*out;
@@ -39,41 +43,29 @@ static char	*read_data(int fd)
 
 	b_read = 1;
 	readstr = NULL;
-	/*
-	TODO
-	recheck if there is a newline in remainder
-	*/
+	if (fd < 0 || fd > 1024)
+		return (NULL);
+	while (b_read > 0)
+	{
+		b_read = read(fd, BUFF, BUFFER_SIZE);
+		BUFF[b_read] = '\0';
+		readstr = ft_strjoin(readstr, BUFF);
+		if (ft_strchr(BUFF, '\n') || b_read < BUFFER_SIZE)
+		{
+			out = ft_strjoin(remainder, return_front(readstr));
+			free(readstr);
+			remainder = return_back(BUFF);
+			return (out);
+		}
+	}
 	if (remainder)
 	{
 		readstr = ft_strdup(remainder);
 		free(remainder);
+		remainder = NULL;
+		out = return_front(remainder);
+		remainder = return_back(readstr);
+		return (out);
 	}
-	while (b_read > 0 && !(ft_strchr(BUFF, '\n')))
-	{
-		b_read = read(fd, BUFF, BUFFER_SIZE);
-		if (b_read == 0)
-			break ;
-		BUFF[b_read] = '\0';
-		readstr = ft_strjoin(readstr, BUFF);
-	}
-	out = ft_strjoin(out, return_front(readstr));
-	remainder = return_back(readstr);
-	free(readstr);
-	return (out);
-}
-
-/**
- * TODO
- * missing letters on multiple single character lines
- * segfault on one single character line
- * keeps printing even when everything is read
- * make main to test betters
- */
-
-char	*get_next_line(int fd)
-{
-	char	*out;
-
-	out = read_data(fd);
-	return (out);
+	return (NULL);
 }

@@ -63,6 +63,8 @@ char	*ft_strchr(const char *str, int c)
 
 	i = 0;
 	len = ft_strlen(str);
+	if (!str)
+		return (NULL);
 	if (c == '\0')
 		return (&((char *)str)[len]);
 	while (str[i])
