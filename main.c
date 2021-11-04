@@ -12,12 +12,13 @@ int	main(int argc, char const *argv[])
 	remove("./test/test1check.txt");
 	fp = fopen("./test/test1check.txt", "w+");
 	fd = open("./test/test1.txt", O_RDONLY);
-	while (i < 2)
+	while (i < 1)
 	{
 		fprintf(fp, "%s", get_next_line(fd));
 		i++;
 	}
-	close (fd);
 	fclose(fp);
+	close (fd);
+	while(1);
 	return 0;
 }

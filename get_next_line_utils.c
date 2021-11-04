@@ -34,7 +34,7 @@ char	*ft_strjoin(char const *s1, char const *s2)
 		j++;
 	}
 	out[i + j] = '\0';
-	free((void *)s1);
+	free((char *)s1);
 	return (out);
 }
 
@@ -44,6 +44,8 @@ char	*ft_strdup(const char *str)
 	size_t	i;
 
 	i = 0;
+	if (!str)
+		return (NULL);
 	out = (char *)malloc((ft_strlen(str) + 1) * sizeof(char));
 	if (!out)
 		return (NULL);
