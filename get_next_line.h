@@ -5,6 +5,13 @@
 # include <stdio.h>
 # define BUFFER_SIZE 4
 
+typedef struct 
+{
+	char	*readstr;
+	char	*r_main;
+}data_store;
+
+
 //== get_next_line functions ==/
 
 char		*get_next_line(int fd);
