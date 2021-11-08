@@ -20,7 +20,7 @@ char	*ft_strjoin(char const *s1, char const *s2)
 	j = 0;
 	if (!s1)
 		return (ft_strdup(s2));
-	out = (char *)malloc((ft_strlen(s1) + ft_strlen(s2) + 1) * sizeof(char));
+	out = (char *)malloc((ft_strlen(s1) + ft_strlen(s2)) + 1 * sizeof(char));
 	if (!out)
 		return (NULL);
 	while (s1[i])
@@ -64,9 +64,9 @@ char	*ft_strchr(const char *str, int c)
 	size_t	len;
 
 	i = 0;
-	len = ft_strlen(str);
 	if (!str)
 		return (NULL);
+	len = ft_strlen(str);
 	if (c == '\0')
 		return (&((char *)str)[len]);
 	while (str[i])

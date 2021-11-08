@@ -6,19 +6,24 @@ int	main(int argc, char const *argv[])
 {
 	FILE	*fp;
 	int		fd;
+	char	*filepath;
 	size_t	i;
+	char	*line;
 
 	i = 0;
-	remove("./test/test1check.txt");
-	fp = fopen("./test/test1check.txt", "w+");
-	fd = open("./test/test1.txt", O_RDONLY);
-	while (i < 1)
+	filepath = "./test/empty.txt";
+	remove("./test/check.txt");
+	fp = fopen("./test/check.txt", "w+");
+	fd = open(filepath, O_RDONLY);
+	while (i < 2)
 	{
-		fprintf(fp, "%s", get_next_line(fd));
+		line = get_next_line(fd);
+		fprintf(fp, "%s", line);
+		free(line);
 		i++;
 	}
 	fclose(fp);
 	close (fd);
-	while(1);
+	// system("leaks a.out");
 	return 0;
 }
