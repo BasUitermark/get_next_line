@@ -3,14 +3,15 @@
 # include <unistd.h>
 # include <stdlib.h>
 # include <stdio.h>
-# define BUFFER_SIZE 4
+# ifndef BUFFER_SIZE
+#  define BUFFER_SIZE 4
+# endif
 
-typedef struct 
+typedef struct s_data_store
 {
 	char	*readstr;
 	char	*r_main;
-}data_store;
-
+}t_data_store;
 
 //== get_next_line functions ==/
 
