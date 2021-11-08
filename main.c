@@ -11,7 +11,7 @@ int	main(int argc, char const *argv[])
 	char	*line;
 
 	i = 0;
-	filepath = "./test/empty.txt";
+	filepath = "./test/test1.txt";
 	remove("./test/check.txt");
 	fp = fopen("./test/check.txt", "w+");
 	fd = open(filepath, O_RDONLY);
