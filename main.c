@@ -24,6 +24,6 @@ int	main(int argc, char const *argv[])
 	}
 	fclose(fp);
 	close (fd);
-	// system("leaks a.out");
+	system("leaks a.out");
 	return 0;
 }
