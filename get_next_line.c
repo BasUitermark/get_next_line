@@ -1,20 +1,20 @@
 #include "get_next_line.h"
 
-static char	*get_line(char *str)
+static char	*get_line(char *readstr)
 {
 	size_t	i;
 
 	i = 0;
-	while (str[i] != '\n' && str[i])
+	while (readstr[i] != '\n' && readstr[i])
 		i++;
-	return (ft_substr(str, 0, i + 1));
+	return (ft_substr(readstr, 0, i + 1));
 }
 
 static char	*read_data(int fd, t_data_store *store)
 {
 	char	BUFF[BUFFER_SIZE + 1];
 	int		b_read;
-	char	*get;
+	char	*line;
 
 	b_read = 1;
 	while (b_read > 0)
@@ -29,10 +29,11 @@ static char	*read_data(int fd, t_data_store *store)
 	}
 	if (store->readstr)
 	{
-		get = get_line(store->readstr);
+		line = get_line(store->readstr);
 		store->r_main = ft_strdup(ft_strchr(store->readstr, '\n'));
 		free(store->readstr);
-		return (get);
+		store->readstr = NULL;
+		return (line);
 	}
 	return (NULL);
 }
@@ -41,15 +42,29 @@ char	*get_next_line(int fd)
 {
 	static t_data_store	store;
 
-	store.readstr = NULL;
+	if (read(fd, NULL, 0) == -1)
+		return (NULL);
 	if (fd >= 0 && fd <= 1024 && BUFFER_SIZE > 0)
 	{
-		if (store.r_main)
+		if (store.r_main && ft_strlen(store.r_main) != 0)
 		{
 			store.readstr = ft_strdup(store.r_main);
 			free(store.r_main);
+			store.r_main = NULL;
 		}
 		return (read_data(fd, &store));
 	}
 	return (NULL);
 }
+
+//TODO Make newline exception
+//TODO Check if it's the last line '\0' of if there is a '\n'
+/*
+!THIS LEAKS for '\n' solution.
+!if (store.r_main && ft_strlen(store.r_main) != 0)
+!		{
+!			store.readstr = ft_strdup(store.r_main);
+!			free(store.r_main);
+!			store.r_main = NULL;
+!		}
+*/

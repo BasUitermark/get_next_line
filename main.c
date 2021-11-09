@@ -11,17 +11,18 @@ int	main(int argc, char const *argv[])
 	char	*line;
 
 	i = 0;
-	filepath = "./test/test1.txt";
+	filepath = "./test/empty.txt";
 	remove("./test/check.txt");
 	fp = fopen("./test/check.txt", "w+");
 	fd = open(filepath, O_RDONLY);
-	while (i < 2)
+	line = get_next_line(fd);
+	while (line)
 	{
-		line = get_next_line(fd);
 		fprintf(fp, "%s", line);
 		free(line);
-		i++;
+		line = get_next_line(fd);
 	}
+	line = get_next_line(fd);
 	fclose(fp);
 	close (fd);
 	system("leaks a.out");

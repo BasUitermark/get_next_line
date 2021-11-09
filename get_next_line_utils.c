@@ -7,7 +7,6 @@ size_t	ft_strlen(char *str)
 	i = 0;
 	if (!str)
 		return (0);
-	// printf("str: %s", str);
 	while (str[i])
 	{
 		i++;
