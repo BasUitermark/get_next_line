@@ -30,7 +30,8 @@ static char	*read_data(int fd, t_data_store *store)
 	if (store->readstr)
 	{
 		line = get_line(store->readstr);
-		store->r_main = ft_strdup(ft_strchr(store->readstr, '\n'));
+		if (ft_strlen(ft_strchr(store->readstr, '\n')) != 0)
+			store->r_main = ft_strdup(ft_strchr(store->readstr, '\n'));
 		free(store->readstr);
 		store->readstr = NULL;
 		return (line);
@@ -46,7 +47,7 @@ char	*get_next_line(int fd)
 		return (NULL);
 	if (fd >= 0 && fd <= 1024 && BUFFER_SIZE > 0)
 	{
-		if (store.r_main && ft_strlen(store.r_main) != 0)
+		if (store.r_main)
 		{
 			store.readstr = ft_strdup(store.r_main);
 			free(store.r_main);
@@ -56,15 +57,3 @@ char	*get_next_line(int fd)
 	}
 	return (NULL);
 }
-
-//TODO Make newline exception
-//TODO Check if it's the last line '\0' of if there is a '\n'
-/*
-!THIS LEAKS for '\n' solution.
-!if (store.r_main && ft_strlen(store.r_main) != 0)
-!		{
-!			store.readstr = ft_strdup(store.r_main);
-!			free(store.r_main);
-!			store.r_main = NULL;
-!		}
-*/

@@ -1,34 +1,42 @@
-f 
+f ff ff ff 
 
+fff fff f 
+fff 
 f 
- fdf 
+f ff f
+f 
+f 
+f f 
+
+f  fff  fff 
+ 
+ fdfff 
  f 
-  fd f ff 
-  f 
-  f 
-   fdf 
-   f 
-   f 
-   fdf 
-   f 
-   f 
-    fdff 	fdf 
-		f 
-			f 
-			f 	
-				f 
-					f 
+ fdfff  fdff
 
-					f 	f 
 
-						f 	
-						f 	
-							f 
-							f	 
-								f 
-								f	 
-								f 	
-								f 	
-								f 	
-								f 	
-						
+
+
+
+
+ f 
+ f f 
+  fdfff 
+   
+   f 
+
+    fdfff
+	 fdff f fdff fdff fdfff 
+	 f 
+	 f 
+	  fdfff 
+	   fdff  fdfffff 
+	   f 
+	   f f f 
+	    
+		f fdff 
+		 
+		 f 
+
+		 fdfff f fdff f 
+		  fdff
