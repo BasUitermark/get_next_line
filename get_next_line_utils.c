@@ -1,6 +1,18 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        ::::::::            */
+/*   get_next_line_utils.c                              :+:    :+:            */
+/*                                                     +:+                    */
+/*   By: buiterma <buiterma@student.codam.nl>         +#+                     */
+/*                                                   +#+                      */
+/*   Created: 2022/01/31 10:39:04 by buiterma      #+#    #+#                 */
+/*   Updated: 2022/01/31 11:24:43 by buiterma      ########   odam.nl         */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "get_next_line.h"
 
-size_t	ft_strlen(char *str)
+size_t	ft_strlen_gnl(char *str)
 {
 	size_t	i;
 
@@ -12,35 +24,33 @@ size_t	ft_strlen(char *str)
 	return (i);
 }
 
-char	*ft_strjoin(char *s1, char *s2)
+char	*ft_strappend_gnl(char *s1, char *s2)
 {
 	size_t	i;
 	size_t	j;
+	size_t	len1;
+	size_t	len2;
 	char	*out;
 
-	i = 0;
-	j = 0;
+	i = -1;
+	j = -1;
+	len1 = ft_strlen_gnl(s1);
+	len2 = ft_strlen_gnl(s2);
 	if (!s1)
-		return (ft_strdup(s2));
-	out = (char *)malloc((ft_strlen(s1) + ft_strlen(s2)) + 1 * sizeof(char));
+		return (ft_strdup_gnl(s2));
+	out = (char *)malloc(len1 + len2 + 1 * sizeof(char));
 	if (!out)
 		return (NULL);
-	while (s1[i])
-	{
+	while (s1[++i])
 		out[i] = s1[i];
-		i++;
-	}
-	while (s2[j])
-	{
+	while (s2[++j])
 		out[i + j] = s2[j];
-		j++;
-	}
 	out[i + j] = '\0';
 	free(s1);
 	return (out);
 }
 
-char	*ft_strdup(char *str)
+char	*ft_strdup_gnl(char *str)
 {
 	char	*out;
 	int		i;
@@ -48,7 +58,7 @@ char	*ft_strdup(char *str)
 
 	len = 0;
 	if (str)
-		len = ft_strlen(str);
+		len = ft_strlen_gnl(str);
 	i = 0;
 	if (!str)
 		return (NULL);
@@ -64,7 +74,7 @@ char	*ft_strdup(char *str)
 	return (out);
 }
 
-char	*ft_strchr(char *str, int c)
+char	*ft_strchr_gnl(char *str, int c)
 {
 	size_t	i;
 	size_t	len;
@@ -72,7 +82,7 @@ char	*ft_strchr(char *str, int c)
 	i = 0;
 	if (!str || !c)
 		return (NULL);
-	len = ft_strlen(str);
+	len = ft_strlen_gnl(str);
 	if (c == '\0')
 		return (&((char *)str)[len]);
 	while (str[i])
@@ -84,7 +94,7 @@ char	*ft_strchr(char *str, int c)
 	return (NULL);
 }
 
-char	*ft_substr(char*s, unsigned int start, size_t len)
+char	*ft_substr_gnl(char*s, unsigned int start, size_t len)
 {
 	char	*sub;
 	size_t	i;
@@ -92,8 +102,8 @@ char	*ft_substr(char*s, unsigned int start, size_t len)
 
 	i = start;
 	j = 0;
-	if (start > ft_strlen(s))
-		return (ft_strdup(""));
+	if (start > ft_strlen_gnl(s))
+		return (ft_strdup_gnl(""));
 	sub = (char *)malloc((len + 1) * sizeof(char));
 	if (!sub)
 		return (NULL);
