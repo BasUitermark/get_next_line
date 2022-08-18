@@ -1,6 +1,6 @@
 <div align="center">
 
-  <img src="assets/code.png" alt="logo" width="200" height="auto" />
+  <img src="assets/text-alignment.png" alt="logo" width="200" height="auto" />
   <h1>GET_NEXT_LINE</h1>
   
   <p>
