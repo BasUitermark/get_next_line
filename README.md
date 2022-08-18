@@ -21,7 +21,7 @@
 
 
 ## :star2: About the Project
-A project made in accordance with the libft project for the Codam Core Curriculum.
+A project made in accordance with the get_next_line project for the Codam Core Curriculum.
 A short recreation of fgets and an introduction into malloc and free, file descriptors, parsing and using multiple files for a function. 
 The first look into reading & parsing a set amount of bits from a file descriptor and eventually saving these to a char array.
 
